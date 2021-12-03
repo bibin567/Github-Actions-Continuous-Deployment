@@ -1,0 +1,12 @@
+region      = "ap-south-1"
+access_key  = "AKIAZ2DY7YXZJJE4QP4I"
+secret_key  = "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"
+project     = "myproject"   
+acm         = "arn of acm certifiacte"
+ec2-type    = "t2.micro"
+asg_count   = 2  
+domain_name = "domain name" 
+vpc_id      = "vpc-0897dda45b87fe149"
+subnet1     = "subnet-07e78df2975ce2ff5"
+subnet2     = "subnet-07e78df2975ce2ff5"
+key_name    = "myaws" 
