@@ -21,7 +21,8 @@ Here I have created a sample Jenkins Continuous Deploymnet Pipeline with Git Web
 
 Below, I have included a simple diagram showing this CD pipeline,
 
-![image](https://user-images.githubusercontent.com/88414576/144723867-3f98fde6-ca33-4b2d-8ba5-5a9e16f0c0cf.png)
+
+![Architecture](https://user-images.githubusercontent.com/88414576/144724466-2189d5c5-27e6-4d1a-810a-f19e405dfc68.JPG)
 
 
 ## How to use
