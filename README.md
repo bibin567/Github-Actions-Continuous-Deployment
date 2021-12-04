@@ -21,7 +21,7 @@ Here I have created a sample Jenkins Continuous Deploymnet Pipeline with Git Web
 
 Below, I have included a simple diagram showing this CD pipeline,
 
-![](https://raw.githubusercontent.com/MarkAntonyGit/MarkAntonyGit/main/Uploads/Jenkins/Architecture.JPG)
+![](https://github.com/bibin567/bibinGit/tree/main/Uploads/Jenkins/Architecture.JPG)
 
 ## How to use
 
