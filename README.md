@@ -66,11 +66,6 @@ Once any commits are done on the Git repository the Jenkins will be triggered an
 
 -- Git Website Version 1
 
-![](https://raw.githubusercontent.com/MarkAntonyGit/MarkAntonyGit/main/Uploads/Jenkins/website%201.JPG)
-
--- Once Version 2 is commited
-
-![](https://raw.githubusercontent.com/MarkAntonyGit/MarkAntonyGit/main/Uploads/Jenkins/website%202.JPG)
 
 ### Connect with me
 
