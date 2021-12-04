@@ -59,12 +59,12 @@ Once any commits are done on the Git repository the Jenkins will be triggered an
 
 -- Git Hub Webhook
 
-![image](https://user-images.githubusercontent.com/88414576/144724329-2ed6a18e-379b-4aa5-9711-7b092c508043.png)
+https://github.com/bibin567/bibinGit/blob/main/Uploads/Jenkins/webhook.JPG?raw=true
 
 
 -- Jenkins Pipeline
 
-![image](https://user-images.githubusercontent.com/88414576/144724323-3a0d146c-e5b4-4da8-bcef-013319071a42.png)
+https://github.com/bibin567/bibinGit/blob/main/Uploads/Jenkins/jenkins.jpg?raw=true
 
 -- Git Website Version 1
 
