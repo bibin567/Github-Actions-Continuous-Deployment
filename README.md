@@ -1,4 +1,4 @@
-![](https://visitor-badge.laobi.icu/badge?page_id=MarkAntonyGit/Jenkins-Continuous-Deployment)
+![](https://visitor-badge.laobi.icu/badge?page_id=jwenjian.visitor-badge)
 
 # Jenkins-Continuous-Deployment
 Jenkins continuous deployment for Git based website/App with Packer, Terraform and Ansible. 
