@@ -3,15 +3,15 @@
 # Get Latest Packer AMI
 #========================================================
 
-#data "aws_ami" "packer_ami" {
-#  most_recent      = true
-#  owners           = ["self"]
-#
-#  filter {
-#    name   = "name"
-#    values = ["packer-Git-Website*"]
-#  }
-#}
+data "aws_ami" "packer_ami" {
+  most_recent      = true
+  owners           = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["packer-Git-Website*"]
+  }
+}
 
 
 #========================================================
