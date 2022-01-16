@@ -1,7 +1,7 @@
 ---
 region: "ap-south-1"                                             #Eg: ap-south-1
-access_key: "AKIAZ2DY7YXZJJE4QP4I"
-secret_key: "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"      
+access_key: "xxxx"
+secret_key: "xxxx"      
 key_name: "myaws"                                                  #Copy this key pem file to this directory
 health_time: 25                                
 git_url: "https://github.com/bibin567/project.git"
