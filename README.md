@@ -45,7 +45,7 @@ Below, I have included a simple diagram showing this CD pipeline,
 
 ```
 cd /var 
-git clone https://github.com/MarkAntonyGit/Jenkins-Continuous-Deployment.git
+git clone https://github.com/bibin567/Jenkins-Continuous-Deployment.git
 Chown -R jenkins. Jenkins-Continuous-Deployment
 cd Jenkins-Continuous-Deployment 
 # Edit the above mentioned files and add key pem file with 600 permission and jenkins ownership
