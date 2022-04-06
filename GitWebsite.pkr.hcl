@@ -1,16 +1,16 @@
 variable "access_key" {
   type    = string
-  default = "AKIAZ2DY7YXZJJE4QP4I"
+  default = "****"
 }
 
 variable "secret_key" {
   type    = string
-  default = "AoBp7zll/tthz1jiOQoS4wE2m9c/utuivGB7cuh7"
+  default = "******"
 }
     
 variable "ami" {
   type    = string
-  default = "ami-052cef05d01020f1d"    
+  default = "<ami-id>"    
 }
 
 variable "type" {
