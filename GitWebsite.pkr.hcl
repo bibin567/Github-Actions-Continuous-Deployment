@@ -1,7 +1,7 @@
 
 variable "ami" {
   type    = string
-  default = "ami-079b5e5b3971bd10d"
+  default = "ami-xxx"
 }
 
 variable "type" {
@@ -23,7 +23,7 @@ build {
   sources = ["source.amazon-ebs.Git-Website"]
 
   provisioner "shell" {
-    script = "/Users/bibin.joy/GolandProjects/bibin/aws/Jenkins-Continuous-Deployment/Git-Script.sh"
+    script = "path/to/Git-Script.sh"
   }
 
   post-processor "shell-local" {
