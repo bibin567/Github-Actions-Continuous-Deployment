@@ -9,8 +9,6 @@
     - name: "AWS - Gather information about instances created with ASG"
       ec2_instance_info:
         region: "{{ region }}"
-        access_key: "{{ access_key}}"
-        secret_key: "{{secret_key}}"
         filters:
           "tag:Name": myproject-ASG
           instance-state-name: [ "running"]
