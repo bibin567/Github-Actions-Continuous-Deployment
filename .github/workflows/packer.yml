@@ -121,7 +121,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: ./.github/workflow/packer
+      - uses: ./.github/workflow/packer.yml
         with:
           playbook: ./playbook_ansible_autoscaling.yml
           inventory: ./hosts
