@@ -105,25 +105,15 @@ jobs:
 
   ansible:
     name: 'ansible GitHub Actions'
-
-  jobs:
-  build:
+    deploy_code:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v2
-      - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+      - name: Run Ansible playbook
+        uses: dawidd6/action-ansible-playbook@v2.5.0
         with:
-          targets: ""
-  deployAnsible:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/workflow/packer.yml
-        with:
-          playbook: ./playbook_ansible_autoscaling.yml
-          inventory: ./hosts
+          playbook: ./playbook_ansible_autoscaling.yml # path to your Ansible playbook
+          directory: ./
+          key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }} # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
+          inventory: ./hosts # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
 
 
