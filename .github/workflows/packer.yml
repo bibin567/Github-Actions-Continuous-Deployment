@@ -6,13 +6,14 @@ env:
 
 jobs:
   packer:
+    name: 'Packer GitHub Actions'
     runs-on: ubuntu-latest
     name: packer
     
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -27,7 +28,7 @@ jobs:
         uses: hashicorp/packer-github-actions@master
         with:
           command: init
-          
+
       # validate templates
       - name: Validate Template
         uses: hashicorp/packer-github-actions@master
@@ -48,7 +49,7 @@ jobs:
 
 
   terraform:
-    name: 'TF GitHub Actions Demo'
+    name: 'TF GitHub Actions'
     runs-on: ubuntu-latest
     environment: production
 
@@ -103,3 +104,23 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
 
+
+  ansible:
+    name: 'Ansible GitHub Actions'
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ""
+  deployAnsible:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/ansible
+        with:
+          playbook: ./playbook_ansible_autoscaling.yml
+          inventory: localhost
