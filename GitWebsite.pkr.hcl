@@ -23,7 +23,7 @@ build {
   sources = ["source.amazon-ebs.Git-Website"]
 
   provisioner "shell" {
-    script = "/Users/bibin.joy/GolandProjects/bibin/aws/Jenkins-Continuous-Deployment/Git-Script.sh"
+    script = "./Git-Script.sh"
   }
 
   post-processor "shell-local" {
