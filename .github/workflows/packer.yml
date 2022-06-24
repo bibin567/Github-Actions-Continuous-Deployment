@@ -8,8 +8,6 @@ jobs:
   packer:
     name: 'Packer GitHub Actions'
     runs-on: ubuntu-latest
-    name: packer
-    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
