@@ -105,7 +105,7 @@ jobs:
 
   ansible:
     name: 'ansible GitHub Actions'
-    deploy_code:
+
     runs-on: ubuntu-latest
     steps:
       - name: Run Ansible playbook
