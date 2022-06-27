@@ -21,7 +21,7 @@ jobs:
           # if you have/need it
           aws-region: ap-south-1
 
-        # Initialize Packer templates
+        # Initialize Packer templatess
       - name: Initialize Packer Template
         uses: hashicorp/packer-github-actions@master
         with:
