@@ -1,4 +1,4 @@
-#name: 'ansible GitHub Actionss'
+#name: 'ansible GitHub Actions'
 #
 ## Only trigger, when the build workflow succeeded
 #on:
