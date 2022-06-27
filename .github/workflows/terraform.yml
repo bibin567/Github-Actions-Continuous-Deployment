@@ -6,7 +6,7 @@ on:
     workflows: ["Packer GitHub Actions"]
     types:
       - completed
-
+jobs:
 terraform:
 
   runs-on: ubuntu-latest

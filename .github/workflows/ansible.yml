@@ -6,7 +6,7 @@ on:
     workflows: ["TF GitHub Actions"]
     types:
       - completed
-
+jobs:
 ansible:
   runs-on: ubuntu-latest
   steps:
