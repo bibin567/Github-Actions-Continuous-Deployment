@@ -1,6 +1,13 @@
-#ansible:
-#  name: 'ansible GitHub Actions'
+#name: 'ansible GitHub Actions'
 #
+## Only trigger, when the build workflow succeeded
+#on:
+#  workflow_run:
+#    workflows: ["TF GitHub Actions"]
+#    types:
+#      - completed
+#jobs:
+#ansible:
 #  runs-on: ubuntu-latest
 #  steps:
 #    - name: Run Ansible playbook
