@@ -17,7 +17,7 @@ Here I have created a sample Jenkins Continuous Deploymnet Pipeline with Git Web
     d) Security Group
     e) Launch Configuration with Packer Golden image
     f) Auto Scaling Group with the Launch Configuration.
-5. Once second job is completed successfully the third one starts, which is offloading and adding new website contents to the instances. This is done using [Ansible](https://www.ansible.com/). In this job, the ansible will offload the instances one by one ensuring that there is no downtime for the website. By doing this we can avoid unnecessary termination of old instances from ASG and change the contents of current instances itself. This job will be skipped in the first run since the contents are same. 
+5. Once the second job is completed successfully the third one starts, which is offloading and adding new website contents to the instances. This is done using [Ansible](https://www.ansible.com/). In this job, the ansible will offload the instances one by one ensuring that there is no downtime for the website. By doing this we can avoid unnecessary termination of old instances from ASG and change the contents of current instances itself. This job will be skipped in the first run since the contents are same. 
 
 Below, I have included a simple diagram showing this CD pipeline,
 
