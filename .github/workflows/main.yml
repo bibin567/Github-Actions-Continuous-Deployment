@@ -106,6 +106,8 @@ jobs:
 
   ansible:
     runs-on: ubuntu-latest
+    become: yes
+    become_user: root
 #    needs:
 #      - packer
 #      - terraform
