@@ -1,10 +1,10 @@
-#name: Main
-#on: push
-#
-#env:
-#  AWS_REGION: ap-south-1
-#
-#jobs:
+name: Main
+on: push
+
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
 #  packer:
 #    name: 'Packer GitHub Actions'
 #    runs-on: ubuntu-latest
@@ -103,17 +103,17 @@
 #      - name: Terraform Apply
 #        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 #        run: terraform apply -auto-approve
-#
-#  ansible:
-#    runs-on: ubuntu-latest
+
+  ansible:
+    runs-on: ubuntu-latest
 #    needs:
 #      - packer
 #      - terraform
-#    steps:
-#      - name: Run Ansible playbook
-#        uses: dawidd6/action-ansible-playbook@v2.5.0
-#        with:
-#          playbook: playbook_ansible_autoscaling.yml # path to your Ansible playbook
-#          directory: /
-#          key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }} # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
-#          inventory: ./hosts # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
+    steps:
+      - name: Run Ansible playbook
+        uses: dawidd6/action-ansible-playbook@v2.5.0
+        with:
+          playbook: playbook_ansible_autoscaling.yml # path to your Ansible playbook
+          directory: /
+          key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }} # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
+          inventory: ./hosts # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
