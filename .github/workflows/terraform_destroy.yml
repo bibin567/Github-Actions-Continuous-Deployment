@@ -1,39 +1,40 @@
-#name: Main
-#on: push
-#
-#env:
-#  AWS_REGION: ap-south-1
-#
-#jobs:
-#  terraform:
-#    name: 'TF GitHub Actions'
-#    runs-on: ubuntu-latest
-#    environment: production
-#
-#    defaults:
-#      run:
-#        shell: bash
-#
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#
-#      - name: Setup Terraform
-#        uses: hashicorp/setup-terraform@v1
-#        with:
-#          terraform_version: 1.0.0
-#
-#      - name: Configure AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-#          # if you have/need it
-#          aws-region: ap-south-1
-#
-#
-#
-#      - name: Terraform destroy
-#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-#        run: terraform destroy -auto-approve
+name: Main
+on: push
+
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
+  terraform:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          # if you have/need it
+          aws-region: ap-south-1
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform destroy
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform destroy -auto-approve

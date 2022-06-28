@@ -1,119 +1,119 @@
-name: Main
-on: push
-
-env:
-  AWS_REGION: ap-south-1
-
-jobs:
-  packer:
-    name: 'Packer GitHub Actions'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          # if you have/need it
-          aws-region: ap-south-1
-
-        # Initialize Packer templatess
-      - name: Initialize Packer Template
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: init
-
-      # validate templates
-      - name: Validate Template
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: validate
-          arguments: -syntax-only
-          target: GitWebsite.pkr.hcl
-
-      # build artifact
-      - name: Build Artifact
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: build
-          arguments: "-color=false -on-error=abort"
-          target: GitWebsite.pkr.hcl
-        env:
-          PACKER_LOG: 1
-
-
-  terraform:
-
-    runs-on: ubuntu-latest
-    needs:
-      - packer
-
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.0.0
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          # if you have/need it
-          aws-region: ap-south-1
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-        env:
-          TF_ACTION_WORKING_DIR: ./
-        continue-on-error: true
-
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
-
-      - name: Terraform Plan
-        id: plan
-        if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
-        continue-on-error: true
-
-      - name: Terraform Plan Status
-        if: steps.plan.outcome == 'failure'
-        run: exit 1
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
-
-  ansible:
-    runs-on: ubuntu-latest
-    needs:
-      - packer
-      - terraform
-    steps:
-      - name: Run Ansible playbook
-        uses: actions/checkout@v2
-        with:
-          playbook: playbook_ansible_autoscaling.yml # path to your Ansible playbook
-#          directory: ./
-#          key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }} # the ssh privatekey for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
-          inventory: hosts # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
+#name: Main
+#on: push
+#
+#env:
+#  AWS_REGION: ap-south-1
+#
+#jobs:
+#  packer:
+#    name: 'Packer GitHub Actions'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+#          # if you have/need it
+#          aws-region: ap-south-1
+#
+#        # Initialize Packer templatess
+#      - name: Initialize Packer Template
+#        uses: hashicorp/packer-github-actions@master
+#        with:
+#          command: init
+#
+#      # validate templates
+#      - name: Validate Template
+#        uses: hashicorp/packer-github-actions@master
+#        with:
+#          command: validate
+#          arguments: -syntax-only
+#          target: GitWebsite.pkr.hcl
+#
+#      # build artifact
+#      - name: Build Artifact
+#        uses: hashicorp/packer-github-actions@master
+#        with:
+#          command: build
+#          arguments: "-color=false -on-error=abort"
+#          target: GitWebsite.pkr.hcl
+#        env:
+#          PACKER_LOG: 1
+#
+#
+#  terraform:
+#
+#    runs-on: ubuntu-latest
+#    needs:
+#      - packer
+#
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
+#
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Setup Terraform
+#        uses: hashicorp/setup-terraform@v1
+#        with:
+#          terraform_version: 1.0.0
+#
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+#          # if you have/need it
+#          aws-region: ap-south-1
+#
+#      - name: Terraform Init
+#        id: init
+#        run: terraform init
+#
+#      - name: Terraform Format
+#        id: fmt
+#        run: terraform fmt -check
+#        env:
+#          TF_ACTION_WORKING_DIR: ./
+#        continue-on-error: true
+#
+#      - name: Terraform Validate
+#        id: validate
+#        run: terraform validate -no-color
+#
+#      - name: Terraform Plan
+#        id: plan
+#        if: github.event_name == 'pull_request'
+#        run: terraform plan -no-color
+#        continue-on-error: true
+#
+#      - name: Terraform Plan Status
+#        if: steps.plan.outcome == 'failure'
+#        run: exit 1
+#
+#      - name: Terraform Apply
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: terraform apply -auto-approve
+#
+#  ansible:
+#    runs-on: ubuntu-latest
+#    needs:
+#      - packer
+#      - terraform
+#    steps:
+#      - name: Run Ansible playbook
+#        uses: actions/checkout@v2
+#        with:
+#          playbook: playbook_ansible_autoscaling.yml # path to your Ansible playbook
+##          directory: ./
+##          key: ${{ secrets.ANSIBLE_SSH_PRIVATE_KEY }} # the ssh privatekey for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
+#          inventory: hosts # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
