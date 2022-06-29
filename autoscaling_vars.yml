@@ -1,5 +1,5 @@
 ---
 region: "ap-south-1"                                             #Eg: ap-south-1
-key_name: "web"                                                  #Copy this key pem file to this directory
+key_name: "xxx"                                                  #Copy this key pem file to this directory
 health_time: 25
 git_url: "https://github.com/bibin567/project.git"
